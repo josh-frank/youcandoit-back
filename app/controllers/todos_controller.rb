@@ -24,16 +24,12 @@ class TodosController < ApplicationController
   end
 
   def update
-    if params[ :content ].empty?
-      render json: { errors: [ "Content can't be blank" ] }, status: :unprocessable_entity
-    else
-      todo_to_update = Todo.find( params[ :id ] )
-      todo_to_update.update(
-        content: params[ :content ] || todo_to_update.content,
-        finished: params[ :finished ] || todo_to_update.finished
-      )
-      render json: todo_to_update
-    end
+    todo_to_update = Todo.find( params[ :id ] )
+    todo_to_update.update(
+      content: params[ :content ] || todo_to_update.content,
+      finished: params[ :finished ] || todo_to_update.finished
+    )
+    render json: todo_to_update
   end
 
   def destroy
