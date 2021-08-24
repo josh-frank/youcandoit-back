@@ -6,6 +6,9 @@ class TodosController < ApplicationController
 
   def show
     render json: Todo.find( params[ :id ] )
+  rescue => error
+    logger.info error
+    render json: { errors: [ "Cannot find todo with id of #{ params[ :id ] }" ] }, status: :not_found
   end
 
   def create
