@@ -1,7 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+started_seeding = Time.now
+
+josh = User.create( username: "josh" )
+
+Todo.create( user: josh, content: "Finish front end", finished: false )
+Todo.create( user: josh, content: "Start back end", finished: true )
+Todo.create( user: josh, content: "Install pg gem", finished: true )
+
+done_seeding = Time.now
+
+puts "Seeded: #{ done_seeding - started_seeding } secs."
