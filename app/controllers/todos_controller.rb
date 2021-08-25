@@ -23,12 +23,17 @@ class TodosController < ApplicationController
     end
   end
 
-  def update
+  def update_content
     todo_to_update = Todo.find( params[ :id ] )
     todo_to_update.update(
-      content: params[ :content ] || todo_to_update.content,
-      finished: params[ :finished ] || todo_to_update.finished
+      content: params[ :content ] || todo_to_update.content
     )
+    render json: todo_to_update
+  end
+
+  def toggle_finished
+    todo_to_update = Todo.find( params[ :id ] )
+    todo_to_update.update( finished: !todo_to_update.finished )
     render json: todo_to_update
   end
 
